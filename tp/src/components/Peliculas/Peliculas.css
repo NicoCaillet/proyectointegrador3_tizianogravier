@@ -1,0 +1,110 @@
+.peliculas {
+    background: linear-gradient(145deg, #1a1a1d, #2c2c47); 
+    background-size: cover;
+    background-attachment: fixed; 
+    font-family: 'Helvetica Neue', sans-serif;
+    padding: 40px;
+    line-height: 1.6;
+}
+
+
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 25px; 
+    font-weight: 400; 
+    margin-bottom: 30px;
+    color: #b1acac; 
+    font-family: 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+.contenedor-peliculas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; 
+}
+
+.pelicula {
+    width: 270px;
+    text-align: center;
+    border-radius: 15px; 
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease; 
+    padding: 20px;
+    margin-bottom: 30px; 
+    background-color: #1f1f27;  
+    border: 2px solid #555; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
+
+
+.pelicula:hover {
+    transform: scale(1.07); /* Escalado más notorio en el hover */
+    box-shadow: 0 10px 20px rgba(213, 198, 198, 0.6); /* Sombra más marcada en hover */
+}
+
+.pelicula img {
+    width: 100%;
+    height: 360px; /* Ajusta la altura de la imagen */
+    object-fit: cover;
+    border-bottom: 4px solid #555; /* Aumenta el borde inferior */
+    border-radius: 12px 12px 0 0; /* Esquinas redondeadas en la parte superior */
+}
+.boton_detalle{
+    margin-top: 12px;
+    padding: 12px 25px; 
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 10px; 
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+h3 {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    margin: 12px 0;
+    color: #f0f0f0; 
+}
+
+button {
+    margin-top: 12px;
+    padding: 12px 25px; 
+    font-size: 16px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b); 
+    color: white;
+    border: none;
+    border-radius: 25px; 
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #e56e55, #fc9d73); 
+    transform: translateY(-3px);
+} 
+a {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fc9d73;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff3b3b; 
+}
+
+p {
+    font-size: 14px;
+    color: #c4c4c4; 
+    line-height: 1.6; 
+}
