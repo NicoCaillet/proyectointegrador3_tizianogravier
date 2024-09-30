@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer"; 
 import MasPopulares from "./pages/MasPopulares";
+import MasCartelera from "./pages/MasCartelera"; 
 import VerMas from "./pages/VerMas";
 
 
@@ -24,6 +25,8 @@ function App() {
     <Route path="/search" component={SearchResults} /> 
     <Route path="/more/category/:category" component={VerMas} />
     <Route path="/vermas/category/popular" component={MasPopulares} />
+    <Route path="/vermas/category/cartelera" component={MasCartelera} /> 
+
     <Route component={NotFound} /> 
 
     </Switch>

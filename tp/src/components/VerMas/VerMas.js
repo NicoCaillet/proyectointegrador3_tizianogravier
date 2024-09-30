@@ -15,38 +15,37 @@ class VerMas extends Component {
       pelisFiltradas: [],
       ValorFiltrado: "",
       favs: [],
-      paginaActual: 1, // Estado para manejar la página actual
-      cargando: false // Estado para indicar si está cargando más películas
+      paginaActual: 1,
+      cargando: false
     };
   }
 
   componentDidMount() {
-    this.cargarPeliculas(); // Llamar a la función que carga películas al montar el componente
+    this.cargarPeliculas();
     const favs = localStorage.getItem("favoritos") ? JSON.parse(localStorage.getItem("favoritos")) : [];
     this.setState({ favs });
   }
 
-  // Función para cargar las películas, con paginación
   cargarPeliculas = () => {
     const { category } = this.props.match.params;
     const { paginaActual } = this.state;
     const url = `${enlaces[category]}&page=${paginaActual}`;
 
-    this.setState({ cargando: true }); // Activar el estado de cargando
+    this.setState({ cargando: true });
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         this.setState((prevState) => ({
-          pelis: [...prevState.pelis, ...data.results], // Concatenar nuevas películas con las existentes
-          pelisFiltradas: [...prevState.pelisFiltradas, ...data.results], // Actualizar las películas filtradas
-          paginaActual: prevState.paginaActual + 1, // Incrementar la página
-          cargando: false // Desactivar el estado de cargando
+          pelis: [...prevState.pelis, ...data.results],
+          pelisFiltradas: [...prevState.pelisFiltradas, ...data.results],
+          paginaActual: prevState.paginaActual + 1,
+          cargando: false
         }));
       })
       .catch((e) => {
         console.log(e);
-        this.setState({ cargando: false }); // Desactivar cargando en caso de error
+        this.setState({ cargando: false });
       });
   };
 
@@ -100,7 +99,6 @@ class VerMas extends Component {
           )}
         </div>
 
-        {/* Botón para cargar más películas */}
         <div className="load-more-container">
           <button onClick={this.cargarPeliculas} disabled={cargando}>
             {cargando ? "Cargando..." : "Cargar Más Películas"}

@@ -1,4 +1,3 @@
-// SearchForm.js
 import React, { Component } from "react";
 import "./SearchForm.css";
 
@@ -19,7 +18,6 @@ class SearchForm extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault(); 
-    // Validar que el query no esté vacío
     if (this.state.query && this.state.query !== "") {
       this.props.history.push("/search", { query: this.state.query });
     } else {

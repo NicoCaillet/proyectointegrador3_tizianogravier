@@ -1,7 +1,6 @@
-// Peliculas.js
 import React, { Component } from "react";
 import PeliculaCard from "../PeliculaCard/PeliculaCard";
-import { Link } from "react-router-dom"; // Importar Link para la navegación
+import { Link } from "react-router-dom";
 import "./Peliculas.css";
 
 class Peliculas extends Component {
@@ -11,19 +10,18 @@ class Peliculas extends Component {
       populares: [],
       nowPlaying: [], 
       favoritos: [],
-      paginaActualPopulares: 1, // Estado para manejar la página actual de populares
-      paginaActualCartelera: 1, // Estado para manejar la página actual de cartelera
+      paginaActualPopulares: 1,
+      paginaActualCartelera: 1,
     };
   }
 
   componentDidMount() {
-    this.fetchPeliculas(); // Cargar las primeras películas populares
-    this.fetchCartelera(); // Cargar las primeras películas en cartelera
+    this.fetchPeliculas();
+    this.fetchCartelera();
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
     this.setState({ favoritos });
   }
 
-  // Función para cargar películas populares
   fetchPeliculas = () => {
     const { paginaActualPopulares } = this.state;
 
@@ -40,7 +38,6 @@ class Peliculas extends Component {
       });
   };
 
-  // Función para cargar películas en cartelera
   fetchCartelera = () => {
     const { paginaActualCartelera } = this.state;
 
@@ -77,13 +74,12 @@ class Peliculas extends Component {
 
     return (
       <div className="peliculas">
-        {/* Sección de Películas Populares */}
         <section>
           <h2> POPULARES </h2>
           <div className="contenedor-peliculas">
             {populares.length > 0 ? (
               populares
-                .slice(0, 6) // Mostrar solo las primeras 8 películas
+                .slice(0, 6)
                 .map((movie) => (
                   <PeliculaCard
                     key={movie.id}
@@ -96,7 +92,6 @@ class Peliculas extends Component {
               <p>Cargando...</p>
             )}
           </div>
-          {/* Botón para ver más populares */}
           <div className="ver-mas-container">
             <Link to="/more/category/popular" className="btn-ver-mas">
               Ver más Populares
@@ -104,13 +99,12 @@ class Peliculas extends Component {
           </div>
         </section>
 
-        {/* Sección de Películas en Cartelera */}
         <section>
           <h2> CARTELERA </h2>
           <div className="contenedor-peliculas">
             {nowPlaying.length > 0 ? (
               nowPlaying
-                .slice(0, 6) // Mostrar solo las primeras 8 películas
+                .slice(0, 6)
                 .map((movie) => (
                   <PeliculaCard
                     key={movie.id}
@@ -123,7 +117,6 @@ class Peliculas extends Component {
               <p>Cargando...</p>
             )}
           </div>
-          {/* Botón para ver más películas en cartelera */}
           <div className="ver-mas-container">
             <Link to="/more/category/now_playing" className="btn-ver-mas">
               Ver más Cartelera

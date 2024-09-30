@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  flex-wrap: wrap; /* Para que sea responsive */
+  flex-wrap: wrap;
 }
 
 .footer-content span {

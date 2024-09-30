@@ -1,4 +1,3 @@
-// Navbar.js
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
@@ -18,15 +17,12 @@ function Navbar() {
         </Link>
       </div>
       
-      {/* Botón de Menú para Móviles */}
       <div className="menu-toggle">
         <button onClick={toggleMenu}>
-          {/* Ícono de hamburguesa */}
           ☰
         </button>
       </div>
 
-      {/* Clase dinámica para abrir/cerrar el menú */}
       <nav className={`nav ${menuOpen ? "open" : ""}`}>
         <ul className="nav-list">
           <li><Link className="nav-link" to="/">Home</Link></li>
