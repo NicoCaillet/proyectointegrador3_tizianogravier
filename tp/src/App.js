@@ -7,6 +7,8 @@ import Detalle from "./pages/Detalle";
 import NotFound from "./pages/NotFound"; 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer"; 
+import MasPopulares from "./pages/MasPopulares";
+import VerMas from "./pages/VerMas";
 
 
 
@@ -20,6 +22,8 @@ function App() {
     <Route path="/favorites" component={Favoritos} /> 
     <Route path="/detalle/id/:id" component={Detalle} /> 
     <Route path="/search" component={SearchResults} /> 
+    <Route path="/more/category/:category" component={VerMas} />
+    <Route path="/vermas/category/popular" component={MasPopulares} />
     <Route component={NotFound} /> 
 
     </Switch>

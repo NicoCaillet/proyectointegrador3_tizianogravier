@@ -1,0 +1,8 @@
+.paginaPelis{
+    background: linear-gradient(145deg, #1a1a1d, #2c2c47); 
+    background-size: cover;
+    background-attachment: fixed; 
+    font-family: 'Helvetica Neue', sans-serif;
+    padding: 40px;
+    line-height: 1.6;
+}

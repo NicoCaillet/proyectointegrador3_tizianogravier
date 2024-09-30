@@ -1,37 +1,61 @@
+// Peliculas.js
 import React, { Component } from "react";
-import PeliculaCard from "../PeliculaCard/PeliculaCard"; 
-import { Link } from "react-router-dom";
-import "./Peliculas.css"
-
+import PeliculaCard from "../PeliculaCard/PeliculaCard";
+import { Link } from "react-router-dom"; // Importar Link para la navegación
+import "./Peliculas.css";
 
 class Peliculas extends Component {
   constructor() {
     super();
     this.state = {
       populares: [],
-      nowPlaying: [],
+      nowPlaying: [], 
       favoritos: [],
+      paginaActualPopulares: 1, // Estado para manejar la página actual de populares
+      paginaActualCartelera: 1, // Estado para manejar la página actual de cartelera
     };
   }
 
   componentDidMount() {
-    fetch("https://api.themoviedb.org/3/movie/popular?api_key=0331cddd490fdf784d51f00d86f1b001")
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ populares: data.results.slice(0, 5) });
-      })
-      .catch((error) => console.log(error));
-
-    fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=0331cddd490fdf784d51f00d86f1b001")
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ nowPlaying: data.results.slice(0, 5) });
-      })
-      .catch((error) => console.log(error));
-
+    this.fetchPeliculas(); // Cargar las primeras películas populares
+    this.fetchCartelera(); // Cargar las primeras películas en cartelera
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
     this.setState({ favoritos });
   }
+
+  // Función para cargar películas populares
+  fetchPeliculas = () => {
+    const { paginaActualPopulares } = this.state;
+
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=0331cddd490fdf784d51f00d86f1b001&page=${paginaActualPopulares}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState((prevState) => ({
+          populares: [...prevState.populares, ...data.results], 
+          paginaActualPopulares: prevState.paginaActualPopulares + 1
+        }));
+      })
+      .catch((error) => {
+        console.error( error);
+      });
+  };
+
+  // Función para cargar películas en cartelera
+  fetchCartelera = () => {
+    const { paginaActualCartelera } = this.state;
+
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=0331cddd490fdf784d51f00d86f1b001&page=${paginaActualCartelera}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState((prevState) => ({
+          nowPlaying: [...prevState.nowPlaying, ...data.results],
+          paginaActualCartelera: prevState.paginaActualCartelera + 1
+        }));
+      })
+      .catch((error) => {
+        console.error("Error al cargar más películas de cartelera:", error);
+      });
+  };
 
   agregarFav = (id) => {
     let { favoritos } = this.state;
@@ -53,42 +77,58 @@ class Peliculas extends Component {
 
     return (
       <div className="peliculas">
+        {/* Sección de Películas Populares */}
         <section>
-          <h2> POPULARES</h2>
+          <h2> POPULARES </h2>
           <div className="contenedor-peliculas">
             {populares.length > 0 ? (
-              populares.map((movie) => (
-                <PeliculaCard
-                  key={movie.id}
-                  pelicula={movie}
-                  esFavorito={this.esFavorito}
-                  agregarFav={this.agregarFav}
-                />
-              ))
+              populares
+                .slice(0, 6) // Mostrar solo las primeras 8 películas
+                .map((movie) => (
+                  <PeliculaCard
+                    key={movie.id}
+                    pelicula={movie}
+                    esFavorito={this.esFavorito}
+                    agregarFav={this.agregarFav}
+                  />
+                ))
             ) : (
               <p>Cargando...</p>
             )}
           </div>
-          <Link to="/more/category/popular">Ver Todas las peliculas populares</Link>
+          {/* Botón para ver más populares */}
+          <div className="ver-mas-container">
+            <Link to="/more/category/popular" className="btn-ver-mas">
+              Ver más Populares
+            </Link>
+          </div>
         </section>
 
+        {/* Sección de Películas en Cartelera */}
         <section>
-          <h2> EN CARTELERA</h2>
+          <h2> CARTELERA </h2>
           <div className="contenedor-peliculas">
             {nowPlaying.length > 0 ? (
-              nowPlaying.map((movie) => (
-                <PeliculaCard
-                  key={movie.id}
-                  pelicula={movie}
-                  esFavorito={this.esFavorito}
-                  agregarFav={this.agregarFav}
-                />
-              ))
+              nowPlaying
+                .slice(0, 6) // Mostrar solo las primeras 8 películas
+                .map((movie) => (
+                  <PeliculaCard
+                    key={movie.id}
+                    pelicula={movie}
+                    esFavorito={this.esFavorito}
+                    agregarFav={this.agregarFav}
+                  />
+                ))
             ) : (
               <p>Cargando...</p>
             )}
           </div>
-          <Link to="/more/category/now_playing">Ver Todas las peliculas en cartelera</Link>
+          {/* Botón para ver más películas en cartelera */}
+          <div className="ver-mas-container">
+            <Link to="/more/category/now_playing" className="btn-ver-mas">
+              Ver más Cartelera
+            </Link>
+          </div>
         </section>
       </div>
     );
