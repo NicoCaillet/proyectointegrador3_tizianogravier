@@ -20,7 +20,7 @@ class PeliculaDetalle extends Component {
     }
     infoPeli = ()=> {
         const id = this.props.id;
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=0331cddd490fdf784d51f00d86f1b001`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=c7afdc079b8b11e78d950199ac3a221e`)
         .then(response => response.json())
             .then(data => {
                 this.setState({ movie: data, loading: false }, () => {
@@ -65,13 +65,13 @@ class PeliculaDetalle extends Component {
             return <p>No se pudo cargar el detalle de la pelicula</p>
         }
     return(
-        <section className="card-container">
-            <div className="movie-card">
+        <section >
                 <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
+                style={{marginTop: '40px', borderRadius: '20px'}}
                 />
-                <h4>{movie.title}</h4>
+                <h4 style={{color: '#2b5af5'}}>{movie.title}</h4>
                     <p><strong>Duración:</strong> {movie.runtime} minutos</p>
                     <p><strong>Calificación:</strong> {movie.vote_average}</p>
                     <p><strong>Género:</strong> {movie.genres.map(g => g.name).join(', ')}</p>
@@ -81,7 +81,6 @@ class PeliculaDetalle extends Component {
                         {esFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
                     </button>
                     <a href="/">Volver al inicio</a>
-                </div>
             </section>
                 
     )

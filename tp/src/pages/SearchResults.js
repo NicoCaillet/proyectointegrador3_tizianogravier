@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PeliculaCard from "../components/PeliculaCard/PeliculaCard"; 
-import Loader from '../components/Loader/Loader';
 
 class SearchResults extends Component {
   constructor(props) {
@@ -48,7 +47,7 @@ class SearchResults extends Component {
 
     this.setState({ isLoading: true }); 
 
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=0331cddd490fdf784d51f00d86f1b001`)
+    fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=c7afdc079b8b11e78d950199ac3a221e`)
       .then((response) => response.json())
       .then((data) => {
         setTimeout(() => { 
@@ -86,7 +85,7 @@ class SearchResults extends Component {
             </div>
           </>
         ) : (
-          <Loader /> 
+          <p> cargando... </p>
         )}
       </>
     );

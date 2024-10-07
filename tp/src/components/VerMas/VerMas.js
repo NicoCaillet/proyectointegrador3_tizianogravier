@@ -3,8 +3,8 @@ import PeliculaCard from "../PeliculaCard/PeliculaCard";
 import "./VerMas.css";
 
 const enlaces = {
-  popular: "https://api.themoviedb.org/3/movie/popular?api_key=0331cddd490fdf784d51f00d86f1b001",
-  now_playing: "https://api.themoviedb.org/3/movie/now_playing?api_key=0331cddd490fdf784d51f00d86f1b001"
+  popular: "https://api.themoviedb.org/3/movie/popular?api_key=c7afdc079b8b11e78d950199ac3a221e",
+  now_playing: "https://api.themoviedb.org/3/movie/now_playing?api_key=c7afdc079b8b11e78d950199ac3a221e"
 };
 
 class VerMas extends Component {
@@ -79,10 +79,10 @@ class VerMas extends Component {
     const { category } = this.props.match.params;
 
     const tituloPag =
-      category === "popular" ? "Películas Populares" : category === "now_playing" ? "Películas en cartelera" : "Películas";
+      category === "popular" ? "Películas destacadas" : category === "now_playing" ? "Películas en cartelera" : "Películas";
 
     return (
-      <div className="paginaPelis">
+      <div className="paginaPeliculas">
         <h2>{tituloPag}</h2>
         <div className="contenedor-peliculas">
           {pelisFiltradas.length > 0 ? (

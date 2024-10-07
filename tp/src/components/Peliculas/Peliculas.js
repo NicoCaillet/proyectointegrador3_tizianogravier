@@ -8,7 +8,7 @@ class Peliculas extends Component {
     super();
     this.state = {
       populares: [],
-      nowPlaying: [], 
+      nowPlaying: [],
       favoritos: [],
       paginaActualPopulares: 1,
       paginaActualCartelera: 1,
@@ -25,28 +25,32 @@ class Peliculas extends Component {
   fetchPeliculas = () => {
     const { paginaActualPopulares } = this.state;
 
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=0331cddd490fdf784d51f00d86f1b001&page=${paginaActualPopulares}`)
+    fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=c7afdc079b8b11e78d950199ac3a221e&page=${paginaActualPopulares}`
+    )
       .then((response) => response.json())
       .then((data) => {
         this.setState((prevState) => ({
-          populares: [...prevState.populares, ...data.results], 
-          paginaActualPopulares: prevState.paginaActualPopulares + 1
+          populares: [...prevState.populares, ...data.results],
+          paginaActualPopulares: prevState.paginaActualPopulares + 1,
         }));
       })
       .catch((error) => {
-        console.error( error);
+        console.error(error);
       });
   };
 
   fetchCartelera = () => {
     const { paginaActualCartelera } = this.state;
 
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=0331cddd490fdf784d51f00d86f1b001&page=${paginaActualCartelera}`)
+    fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=c7afdc079b8b11e78d950199ac3a221e&page=${paginaActualCartelera}`
+    )
       .then((response) => response.json())
       .then((data) => {
         this.setState((prevState) => ({
           nowPlaying: [...prevState.nowPlaying, ...data.results],
-          paginaActualCartelera: prevState.paginaActualCartelera + 1
+          paginaActualCartelera: prevState.paginaActualCartelera + 1,
         }));
       })
       .catch((error) => {
@@ -75,7 +79,12 @@ class Peliculas extends Component {
     return (
       <div className="peliculas">
         <section>
-          <h2> POPULARES </h2>
+          <div className="ver-mas-container">
+            <h2> DESTACADAS </h2>
+            <Link to="/more/category/popular" className="btn-ver-mas">
+              Ver todas las peliculas destacadas
+            </Link>
+          </div>
           <div className="contenedor-peliculas">
             {populares.length > 0 ? (
               populares
@@ -92,15 +101,15 @@ class Peliculas extends Component {
               <p>Cargando...</p>
             )}
           </div>
-          <div className="ver-mas-container">
-            <Link to="/more/category/popular" className="btn-ver-mas">
-              Ver más Populares
-            </Link>
-          </div>
         </section>
 
         <section>
           <h2> CARTELERA </h2>
+          <div className="ver-mas-container">
+            <Link to="/more/category/now_playing" className="btn-ver-mas">
+              Ver más Cartelera
+            </Link>
+          </div>
           <div className="contenedor-peliculas">
             {nowPlaying.length > 0 ? (
               nowPlaying
@@ -117,11 +126,7 @@ class Peliculas extends Component {
               <p>Cargando...</p>
             )}
           </div>
-          <div className="ver-mas-container">
-            <Link to="/more/category/now_playing" className="btn-ver-mas">
-              Ver más Cartelera
-            </Link>
-          </div>
+          
         </section>
       </div>
     );

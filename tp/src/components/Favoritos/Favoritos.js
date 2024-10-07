@@ -21,7 +21,7 @@ class Favoritos extends Component{
         }
     }
     cargarDetalle = (id) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=0331cddd490fdf784d51f00d86f1b001`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=c7afdc079b8b11e78d950199ac3a221e`)
         .then((response) => response.json())
         .then((data) => {
             const pelisNuevas = this.state.peliculasFavoritas

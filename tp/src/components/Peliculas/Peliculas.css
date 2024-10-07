@@ -1,5 +1,5 @@
 .peliculas {
-    background: linear-gradient(145deg, #1a1a1d, #2c2c47); 
+    background: linear-gradient(145deg, #1e1e25, #3d3dc7); 
     background-size: cover;
     background-attachment: fixed; 
     font-family: 'Helvetica Neue', sans-serif;
@@ -17,33 +17,34 @@ h2 {
     margin-bottom: 30px;
     color: #b1acac; 
     font-family: 'Helvetica Neue', sans-serif;
-    text-align: center;
+    text-align: left;
 }
 
 .contenedor-peliculas {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px; 
 }
 
+.ver-mas-container{
+    margin-bottom: 40px;
+}
+.btn-ver-mas{
+    color: #2b5af5;;
+}
 .pelicula {
-    width: 270px;
+    width: 333px;
     text-align: center;
     border-radius: 15px; 
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease; 
     padding: 20px;
     margin-bottom: 30px; 
     background-color: #1f1f27;  
-    border: 2px solid #555; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
 }
 
-.pelicula:hover {
-    transform: scale(1.07);
-    box-shadow: 0 10px 20px rgba(213, 198, 198, 0.6);
-}
+
 
 .pelicula img {
     width: 100%;
@@ -75,18 +76,14 @@ button {
     margin-top: 12px;
     padding: 12px 25px; 
     font-size: 16px;
-    background: linear-gradient(90deg, #ff7e5f, #feb47b); 
-    color: white;
+    background: #2b5af5;
+    color: black;
+    font-weight: bold;
     border: none;
-    border-radius: 25px; 
+    border-radius: 5px; 
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-button:hover {
-    background: linear-gradient(90deg, #e56e55, #fc9d73); 
-    transform: translateY(-3px);
-} 
 
 a {
     display: block;

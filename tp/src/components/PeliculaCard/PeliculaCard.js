@@ -31,9 +31,9 @@ class PeliculaCard extends Component {
         {esFavorito(pelicula.id) ? (
           <button onClick={() => agregarFav(pelicula.id)}>Eliminar de favoritos</button>
         ) : (
-          <button onClick={() => agregarFav(pelicula.id)}>Sumar a favoritos</button>
+          <button onClick={() => agregarFav(pelicula.id)}>Agregar a favoritos</button>
         )}
-        <a className="boton_detalle" href={`/detalle/id/${pelicula.id}`}>Mas informacion</a>
+        <a className="boton_detalle" href={`/detalle/id/${pelicula.id}`}>Ver detalle de pelicula</a>
         <button onClick={this.mostrarDescrip}>
           {verMasId === pelicula.id ? "Ocultar descripción" : "Ver descripción"}
         </button>

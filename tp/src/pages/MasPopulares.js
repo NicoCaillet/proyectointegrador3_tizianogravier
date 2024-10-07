@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PeliculaCard from '../components/PeliculaCard/PeliculaCard'; 
-import Loader from '../components/Loader/Loader';
 
-const api_key = "0331cddd490fdf784d51f00d86f1b001"; 
+const api_key = "c7afdc079b8b11e78d950199ac3a221e"; 
 const baseURL = `https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&language=en-US&page=`;
 
 class MasPopulares extends Component {
@@ -85,7 +84,7 @@ class MasPopulares extends Component {
         
 
         {this.state.loading ? (
-          <Loader /> 
+          <p> cargando...</p>
         ) : (
           <>
 
